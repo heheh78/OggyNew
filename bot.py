@@ -10,7 +10,11 @@ from utils import temp, load_datas
 from typing import Union, Optional, AsyncGenerator
 from pyrogram import types
 from aiohttp import web
-from plugins.web_support import web_server
+
+from plugins.webcode import bot_run
+from os import environ
+from aiohttp import web as webserver
+
 from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
