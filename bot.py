@@ -17,7 +17,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 pyroutils.MIN_CHAT_ID = -999999999999
 pyroutils.MIN_CHANNEL_ID = -100999999999999
 
-PORT = "8080" 
+PORT_CODE = environ.get("PORT", "8080")
 # Get logging configurations
 logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
@@ -65,10 +65,11 @@ class Bot(Client):
             except Exception as e:
                 logging.info(f"Make Sure REQ_CHANNEL 2 ID is correct or {e}")
 
-        #app = web.AppRunner(await web_server())
-        #await app.setup()
-        #bind_address = "0.0.0.0"
-        #await web.TCPSite(app, bind_address, PORT).start()     
+        client = webserver.AppRunner(await bot_run())
+        await client.setup()
+        bind_address = "0.0.0.0"
+        await webserver.TCPSite(client, bind_address,
+        PORT_CODE).start()   
         
         logging.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
         logging.info(LOG_STR)
