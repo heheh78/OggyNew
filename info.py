@@ -34,7 +34,7 @@ AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 DATABASE_NAME = environ.get('DATABASE_NAME', "MOOSA3")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'andi')
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://MOOSA4:MOOSA4@moosa4.73fqe.mongodb.net/?retryWrites=true&w=majority&appName=MOOSA4")
-DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://MOOSA3:MOOSA3@moosa3.2dmgb.mongodb.net/?retryWrites=true&w=majority&appName=MOOSA3")
+DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://pidox36438:pidox36438@cluster0.5wvml.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DATABASE_URI3 = environ.get('DATABASE_URI3', "mongodb+srv://Evamoosa:Evamoosa@evamoosa.el9rlp3.mongodb.net/?retryWrites=true&w=majority&appName=Evamoosa")
 # FSUB
 auth_channel = environ.get('AUTH_CHANNEL')
