@@ -33,9 +33,9 @@ AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 # MongoDB information
 DATABASE_NAME = environ.get('DATABASE_NAME', "MOOSA3")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'andi')
-DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://MOOSA4:MOOSA4@moosa4.73fqe.mongodb.net/?retryWrites=true&w=majority&appName=MOOSA4")
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://Db22008:Db22008@cluster0.gerriqf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://pidox36438:pidox36438@cluster0.5wvml.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-DATABASE_URI3 = environ.get('DATABASE_URI3', "mongodb+srv://Evamoosa:Evamoosa@evamoosa.el9rlp3.mongodb.net/?retryWrites=true&w=majority&appName=Evamoosa")
+DATABASE_URI3 = environ.get('DATABASE_URI3', "mongodb+srv://Prime2008:Prime2008@cluster0.k3nwgs6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 # FSUB
 auth_channel = environ.get('AUTH_CHANNEL')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
