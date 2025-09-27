@@ -19,7 +19,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN', '7896245224:AAHmn2O4eyCjn-yTCwFJIiJqduTTp_Q
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = True 
-PICS = (environ.get('PICS' ,'https://envs.sh/h-6.jpg')).split()
+PICS = (environ.get('PICS' ,'https://i.ibb.co/CKV4Qd71/IMG-20250926-205407-612.jpg')).split()
 
 # Admins, Channels & Users
 OWNER_ID = environ.get('OWNER_ID', '1380904444')
