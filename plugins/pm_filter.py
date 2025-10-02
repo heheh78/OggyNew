@@ -224,13 +224,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-        ],[
-            InlineKeyboardButton('ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ', url='https://t.me/+KJHSwIdswKUwZjU1'),
-            InlineKeyboardButton('ɢʀᴏᴜᴘ', url='https://t.me/+otfkyVOYhlk3MThl')
-        ],[
-            InlineKeyboardButton('🔍sᴇᴀʀᴄʜ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ꜱᴛᴀᴛꜱ', callback_data='stats')
+            InlineKeyboardButton('🔗 OUR CHANELS LINKS 🔗', url=f'https://t.me/MC_CINEMAS')
+            ],[
+            InlineKeyboardButton('📌 MY GROUP', url=f'https://t.me/+x2Gy5vsCW0xhOTA1'),
+            InlineKeyboardButton('🛠 MY OWNER', url='https://t.me/Leomc_bot')
+            ],[      
+            InlineKeyboardButton('🪬ʜᴇʟᴘ🪬', callback_data='help'),
+            InlineKeyboardButton('✨ ᴀʙᴏᴜᴛ',  callback_data='about')
+            ],[
+            InlineKeyboardButton('➕ ADD ME TO YOUR GROUP ➕', url='https://t.me/MC_MONICA_bot?startgroup=true')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
