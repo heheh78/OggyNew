@@ -224,15 +224,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('🔗 OUR CHANELS LINKS 🔗', url=f'https://t.me/MC_CINEMAS')
-            ],[
-            InlineKeyboardButton('📌 MY GROUP', url=f'https://t.me/+x2Gy5vsCW0xhOTA1'),
-            InlineKeyboardButton('🛠 MY OWNER', url='https://t.me/Leomc_bot')
-            ],[      
-            InlineKeyboardButton('🪬ʜᴇʟᴘ🪬', callback_data='help'),
-            InlineKeyboardButton('✨ ᴀʙᴏᴜᴛ',  callback_data='about')
-            ],[
-            InlineKeyboardButton('➕ ADD ME TO YOUR GROUP ➕', url='https://t.me/Mc_elsa_v10_bot?startgroup=true')
+            InlineKeyboardButton('ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+        ],[
+            InlineKeyboardButton('ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ', url='https://t.me/+3oIcLv1SqdgwYjM8'),
+            InlineKeyboardButton('ɢʀᴏᴜᴘ', url='https://t.me/+V4B2j2y_UGViYWVl')
+        ],[
+            InlineKeyboardButton('🔍sᴇᴀʀᴄʜ', switch_inline_query_current_chat=''),
+            InlineKeyboardButton('ꜱᴛᴀᴛꜱ', callback_data='stats')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -240,29 +238,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-        await query.answer('Piracy Is Crime')
-    elif query.data == "help":
-        buttons = [[
-            InlineKeyboardButton('🆘 Help', callback_data='help')
-buttons = [[
-            InlineKeyboardButton('👩‍🦯 Back', callback_data='help')
-        ]]        
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text=script.HELP_TXT.format(query.from_user.mention),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )    
-    elif query.data == "help":
-        buttons = [[
-            InlineKeyboardButton('👩‍🦯 Back', callback_data='help')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text="User Commands:-/help - Show this help message/settings - Toggle settings of Precise Mode and Button ModePrecise Mode: - If Enabled, bot will match the word & return results with only the exact match- If Disabled, bot will match the word & return all the results containing the word Result Mode: - If Button, bot will return results in button format- If List, bot will return results in list format- If HyperLink, bot will return results in hyperlink format",
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )    
+        await query.answer('Piracy Is Crime')    
     elif query.data == "stats":
         await query.message.edit_text(text="ᴘʟᴇᴀꜱʀ ᴡᴀɪᴛ ꜱᴛᴀᴛᴜꜱ ɪꜱ ʟᴏᴀᴅɪɴɢ...")
         buttons = [[
