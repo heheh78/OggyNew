@@ -68,7 +68,7 @@ async def start(client, message):
             InlineKeyboardButton('🪬ʜᴇʟᴘ🪬', callback_data='help'),
             InlineKeyboardButton('✨ ᴀʙᴏᴜᴛ',  callback_data='about')
             ],[
-            InlineKeyboardButton('➕ ADD ME TO YOUR GROUP ➕', url='https://t.me/MC_MONICA_bot?startgroup=true')
+            InlineKeyboardButton('➕ ADD ME TO YOUR GROUP ➕', url='https://t.me/Mc_elsa_v10_bot?startgroup=true')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
@@ -154,7 +154,7 @@ async def start(client, message):
             InlineKeyboardButton('🪬ʜᴇʟᴘ🪬', callback_data='help'),
             InlineKeyboardButton('✨ ᴀʙᴏᴜᴛ',  callback_data='about')
             ],[
-            InlineKeyboardButton('➕ ADD ME TO YOUR GROUP ➕', url='https://t.me/MC_MONICA_bot?startgroup=true')
+            InlineKeyboardButton('➕ ADD ME TO YOUR GROUP ➕', url='https://t.me/Mc_elsa_v10_bot?startgroup=true')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
