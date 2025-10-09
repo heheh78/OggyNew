@@ -259,16 +259,7 @@ buttons = [[
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
-            text="User Commands:-
-/help - Show this help message
-/settings - Toggle settings of Precise Mode and Button Mode
-Precise Mode: 
-- If Enabled, bot will match the word & return results with only the exact match
-- If Disabled, bot will match the word & return all the results containing the word 
-Result Mode: 
-- If Button, bot will return results in button format
-- If List, bot will return results in list format
-- If HyperLink, bot will return results in hyperlink format",
+            text="User Commands:-/help - Show this help message/settings - Toggle settings of Precise Mode and Button ModePrecise Mode: - If Enabled, bot will match the word & return results with only the exact match- If Disabled, bot will match the word & return all the results containing the word Result Mode: - If Button, bot will return results in button format- If List, bot will return results in list format- If HyperLink, bot will return results in hyperlink format",
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )    
