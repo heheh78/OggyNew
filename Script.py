@@ -3,7 +3,17 @@ class script(object):
     
 ഞാൻ ഒരു AUTO FILTER BOT ആണ്, എന്റെ ഉടമസ്ഥർ MC CINEMAS ✨ ആണ്, നിങ്ങൾക്കും നിങ്ങളുടെ ഗ്രൂപ്പുകളിൽ ഇപ്പോൾ എന്നെ ഉപയോഗിക്കാവുന്നതാണ്"""
     HELP_TXT = """𝙷𝙴𝚈 {}
-𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
+You can find the bot commands here.
+User Commands:-
+/help - Show this help message
+/settings - Toggle settings of Precise Mode and Button Mode
+Precise Mode: 
+- If Enabled, bot will match the word & return results with only the exact match
+- If Disabled, bot will match the word & return all the results containing the word 
+Result Mode: 
+- If Button, bot will return results in button format
+- If List, bot will return results in list format
+- If HyperLink, bot will return results in hyperlink format."""
     ABOUT_TXT = """✯ 𝙼𝚈 𝙽𝙰𝙼𝙴: {}
 ○ 𝖢𝗋𝖾𝖺𝗍𝗈𝗋 : <a href=https://t.me/Leomc_bot>MC CINEMAS ✨</a>
 ○ 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : 𝖯𝗒𝗍𝗁𝗈𝗇 𝟥
