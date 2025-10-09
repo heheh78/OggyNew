@@ -240,7 +240,38 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-        await query.answer('Piracy Is Crime')    
+        await query.answer('Piracy Is Crime')
+    elif query.data == "help":
+        buttons = [[
+            InlineKeyboardButton('🆘 Help', callback_data='help')
+buttons = [[
+            InlineKeyboardButton('👩‍🦯 Back', callback_data='help')
+        ]]        
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.HELP_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )    
+    elif query.data == "help":
+        buttons = [[
+            InlineKeyboardButton('👩‍🦯 Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text="User Commands:-
+/help - Show this help message
+/settings - Toggle settings of Precise Mode and Button Mode
+Precise Mode: 
+- If Enabled, bot will match the word & return results with only the exact match
+- If Disabled, bot will match the word & return all the results containing the word 
+Result Mode: 
+- If Button, bot will return results in button format
+- If List, bot will return results in list format
+- If HyperLink, bot will return results in hyperlink format",
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )    
     elif query.data == "stats":
         await query.message.edit_text(text="ᴘʟᴇᴀꜱʀ ᴡᴀɪᴛ ꜱᴛᴀᴛᴜꜱ ɪꜱ ʟᴏᴀᴅɪɴɢ...")
         buttons = [[
