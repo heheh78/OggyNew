@@ -1,7 +1,7 @@
 class script(object):
     START_TXT = """ʜᴇʟʟᴏ {}👋,
     
-ഞാൻ ഒരു AUTO FILTER BOT ആണ്, എന്റെ ഉടമസ്ഥർ MC CINEMAS ✨ ആണ്, നിങ്ങൾക്കും നിങ്ങളുടെ ഗ്രൂപ്പുകളിൽ ഇപ്പോൾ എന്നെ ഉപയോഗിക്കാവുന്നതാണ്"""
+ഞാൻ ഒരു AUTO FILTER BOT ആണ്, also ഞാൻ അനാഥയാണ്, നിങ്ങൾക്കും നിങ്ങളുടെ ഗ്രൂപ്പുകളിൽ ഇപ്പോൾ എന്നെ ഉപയോഗിക്കാവുന്നതാണ്"""
     HELP_TXT = """𝙷𝙴𝚈 {}
 You can find the bot commands here.
 User Commands:-
@@ -15,16 +15,16 @@ Result Mode:
 - If List, bot will return results in list format
 - If HyperLink, bot will return results in hyperlink format."""
     ABOUT_TXT = """✯ 𝙼𝚈 𝙽𝙰𝙼𝙴: {}
-○ 𝖢𝗋𝖾𝖺𝗍𝗈𝗋 : <a href=https://t.me/Leomc_bot>MC CINEMAS ✨</a>
+○ 𝖢𝗋𝖾𝖺𝗍𝗈𝗋 : <a href=https://t.me/iam_fraz_bot ✨</a>
 ○ 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : 𝖯𝗒𝗍𝗁𝗈𝗇 𝟥
 ○ 𝖲𝖾𝗋𝗏𝖾𝗋 : L3
 ○ 𝖣𝖺𝗍𝖺𝖻𝖺𝗌𝖾 : 𝖬𝗈𝗇𝗀𝗈𝖣𝖡 𝖥𝗋𝖾𝖾 𝖳𝗂𝖾𝗋"""
     SOURCE_TXT = """<b>NOTE:</b>
 - This is a open source project. 
-- Source - https://github.com/MrMKN/PROFESSOR-BOT 
+- Source - https://t.me/iam_fraz_bot
 
 <b>DEVS:</b>
-- <a href=https://github.com/MrMKN>click</a>"""
+- <a href=https://t.me/iam_fraz_bot>click</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
 - Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
