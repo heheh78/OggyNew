@@ -22,9 +22,9 @@ USE_CAPTION_FILTER = True
 PICS = (environ.get('PICS' ,'https://i.imghippo.com/files/XGLG7861zeg.jpg')).split()
 
 # Admins, Channels & Users
-OWNER_ID = environ.get('OWNER_ID', '1380904444')
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1380904444').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002203759750 -1002874299680 -1002759296361 -1002839665436').split()]
+OWNER_ID = environ.get('OWNER_ID', '7756047880')
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '7756047880').split()]
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002287749434').split()]
 auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
 auth_grp = environ.get('AUTH_GROUP')
@@ -51,7 +51,7 @@ DELETE_TIMEOUT = int(environ.get('DELETE_TIMEOUT', 2*60*60)) # 2 hours in second
 AUTO_DEL = int(300)
 PM_DEL = int(300)
 
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002291034792'))
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1003002861839'))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', '+MxeWYzJmeGgyNmU1')
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "True")), True)
 IMDB = is_enabled((environ.get('IMDB', "False")), False)
