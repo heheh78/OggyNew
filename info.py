@@ -35,7 +35,7 @@ DATABASE_NAME = environ.get('DATABASE_NAME', "MOOSA3")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'andi')
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://FUCK:ASS@cluster0.qbhqdgz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://FUCKASS:ASS@cluster0.39t4xbr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-DATABASE_URI3 = environ.get('DATABASE_URI3', "mongodb+srv://Db42008:Db42008@cluster0.tkdtkvn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+DATABASE_URI3 = environ.get('DATABASE_URI3', "mongodb+srv://SUCKERS:ASS@cluster0.ey0lhqe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 # FSUB
 auth_channel = environ.get('AUTH_CHANNEL')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
