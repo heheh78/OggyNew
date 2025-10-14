@@ -275,7 +275,15 @@ async def auto_filter(client, msg, spoll=False):
             files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
             if not files:                
                 okd = await msg.reply(
-                   text="Movie not Found Dude 😔 \n\n Got to Google and search 🔍 the movie name and copy the movie name woth correct spelling and send me ✅ also check the movie is ott released or not 🤝 try searching the movie name with the released year like ➡️ Marco 2024 ✅",                    
+                   text="🎬 **Movie Not Found / മൂവി കണ്ടില്ല** 😔\n\n"
+                    "Your spelling might be incorrect or the movie is not yet indexed.\n"
+                    "നിങ്ങളുടെ സ്പെല്ലിംഗ് തെറ്റായിരിക്കാം അല്ലെങ്കിൽ മൂവി ഇന്റക്സുചെയ്യപ്പെട്ടിട്ടില്ല.\n\n"
+                    "🔹 Please search the movie on Google 🔍 and copy the correct name.\n"
+                    "   Google-ൽ മൂവി തിരയുക 🔍, ശരിയായ പേരു കോപ്പി ചെയ്ത് ഇവിടെ അയയ്ക്കുക.\n\n"
+                    "🔹 Send the movie name with release year, e.g., `Marco 2024`.\n"
+                    "   റിലീസ് വർഷം കൂടി ചേർത്തു അയയ്ക്കുക, ഉദാ: `Marco 2024`.\n\n"
+                    "🔹 Make sure the movie is released on OTT.\n"
+                    "   മൂവി OTT-ൽ റിലീസ് ആയതാണെന്ന് ഉറപ്പാക്കുക.",                    
                     reply_to_message_id=msg.id,
                     parse_mode=None,
                     disable_web_page_preview=True
