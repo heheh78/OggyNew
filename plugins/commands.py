@@ -146,19 +146,19 @@ async def start(client, message):
             return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-            InlineKeyboardButton('🔗 OUR CHANELS LINKS 🔗', url=f'https://t.me/iam_fraz_bot')
+            InlineKeyboardButton('🔗 CHANELS LINKS 🔗', url=f'https://t.me/iam_fraz_bot')
             ],[
-            InlineKeyboardButton('📌 MY GROUP', url=f'https://t.me/iam_fraz_bot'),
-            InlineKeyboardButton('🛠 MY OWNER', url='https://t.me/iam_fraz_bot')
+            InlineKeyboardButton('Group 1', url=f'https://t.me/i'),
+            InlineKeyboardButton('Group 2', url='https://t.me/i')
             ],[      
-            InlineKeyboardButton('🪬ʜᴇʟᴘ🪬', callback_data='help'),
-            InlineKeyboardButton('✨ ᴀʙᴏᴜᴛ',  callback_data='about')
+            InlineKeyboardButton('Dont touch', callback_data='help'),
+            InlineKeyboardButton('Dont',  callback_data='about')
             ],[
             InlineKeyboardButton('➕ ADD ME TO YOUR GROUP ➕', url='https://t.me/movie_search01bot?startgroup=true')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
-            photo="https://i.imghippo.com/files/XGLG7861zeg.jpg",
+            photo="https.jpg",
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
