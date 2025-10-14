@@ -1,7 +1,7 @@
 class script(object):
     START_TXT = """ʜᴇʟʟᴏ {}👋,
     
-ഞാൻ ഒരു AUTO FILTER BOT ആണ്, also ഞാൻ അനാഥയാണ്, നിങ്ങൾക്കും നിങ്ങളുടെ ഗ്രൂപ്പുകളിൽ ഇപ്പോൾ എന്നെ ഉപയോഗിക്കാവുന്നതാണ്"""
+im a Mobie search bot , just send me or add me to your group and i will give u the movie file that you requested 🍿🎥"""
     HELP_TXT = """𝙷𝙴𝚈 {}
 You can find the bot commands here.
 User Commands:-
