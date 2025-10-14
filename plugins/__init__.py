@@ -1,154 +1,231 @@
-import subprocess
 import json
+import subprocess
+import sys, os
 
 from pyrogram import Client, filters, enums
-import sys, os 
-from info import ADMINS
-from pyrogram.errors import ChatAdminRequired, FloodWait 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest, Message
-from pyrogram.types import ChatJoinRequest
-from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong, PeerIdInvalid
+from pyrogram.errors import ChatAdminRequired, FloodWait, PeerIdInvalid
+from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
+from info import ADMINS
 from database.users_chats_db import db
 from utils import temp
-    
+
+
+# ────────────────────────────────
+# 🔹 Handle join requests
+# ────────────────────────────────
 @Client.on_chat_join_request()
 async def join_reqs(_, join_req: ChatJoinRequest):
     user_id = join_req.from_user.id
     try:
         if join_req.chat.id == temp.REQ_CHANNEL1:
             await db.add_req_one(user_id)
-        if join_req.chat.id == temp.REQ_CHANNEL2:
+        elif join_req.chat.id == temp.REQ_CHANNEL2:
             await db.add_req_two(user_id)
     except Exception as e:
         print(f"Error adding join request: {e}")
 
-@Client.on_message(filters.command("set_sub1") & filters.user(ADMINS))
-async def add_fsub_chatt1(bot, m):
+
+# ────────────────────────────────
+# 🔹 Force Subscribe Help
+# ────────────────────────────────
+@Client.on_message(filters.command("fusub") & filters.user(ADMINS))
+async def fusub_help(bot, message):
+    text = (
+        "<b>🧩 Force Subscribe Commands</b>\n\n"
+        "‣ <b>/setchat1</b> - Set Force Subscribe Channel 1\n"
+        "‣ <b>/setchat2</b> - Set Force Subscribe Channel 2\n"
+        "‣ <b>/delchat1</b> - Delete Force Subscribe Channel 1\n"
+        "‣ <b>/delchat2</b> - Delete Force Subscribe Channel 2\n"
+        "‣ <b>/viewchat1</b> - View Invite Link & Info for Channel 1\n"
+        "‣ <b>/viewchat2</b> - View Invite Link & Info for Channel 2\n"
+        "‣ <b>/purge_one</b> - Clear all Channel 1 requests from DB\n"
+        "‣ <b>/purge_two</b> - Clear all Channel 2 requests from DB\n"
+        "‣ <b>/totalreq</b> - View Total Force Subscribe User Counts\n"
+    )
+    await message.reply(text, disable_web_page_preview=True)
+
+
+# ────────────────────────────────
+# 🔹 Set Force Subscribe Channels
+# ────────────────────────────────
+@Client.on_message(filters.command("setchat1") & filters.user(ADMINS))
+async def set_chat1(bot, m):
     if len(m.command) == 1:
-        return await m.reply("Send Command With Force Sub Channel Id Like /set_sub -100123456789")
+        return await m.reply("Usage: `/setchat1 channel_id`", quote=True)
+
     raw_id = m.text.split(" ", 1)[1]
     if temp.REQ_CHANNEL1:
-        old_channel_id = temp.REQ_CHANNEL1
-        temp.REQ_CHANNEL1 = None
-        bot.req_link1 = None
         await db.update_loadout('channel1', None, bot.me.id)
         await db.delete_all_one()
+        temp.REQ_CHANNEL1 = None
+        bot.req_link1 = None
+
     try:
         chat = await bot.get_chat(int(raw_id))
     except ChatAdminRequired:
-        return await m.reply("Channel Parameter Invalid. Iam Not Having Full Admin Rights In Your Channel. Please Add Admin With Full Admin Permeation")
+        return await m.reply("❌ Bot is not an admin in this channel.")
     except PeerIdInvalid:
-        return await m.reply("Bot Is Not Added In This Channel. Please Add With Full Admin Permeation")
+        return await m.reply("❌ Invalid channel ID or bot not added.")
     except Exception as e:
-        return await m.reply(f'Error {e}')
+        return await m.reply(f"❌ Error: {e}")
+
     try:
-        link = (await bot.create_chat_invite_link(chat_id=int(chat.id), creates_join_request=True)).invite_link
+        link = (await bot.create_chat_invite_link(chat.id, creates_join_request=True)).invite_link
     except Exception as e:
         print(e)
         link = "None"
+
     await db.update_loadout('channel1', chat.id, bot.me.id)
-    await db.delete_all_one()
     temp.REQ_CHANNEL1 = chat.id
     bot.req_link1 = link
-    text = f"Success Fully Added:\n\nchat id: {chat.id}\nchat name: {chat.title}\nchat link: {link}"
-    return await m.reply(text=text, disable_web_page_preview=True)
 
-@Client.on_message(filters.command("set_sub2") & filters.user(ADMINS))
-async def add_fsub_chatt2(bot, m):
+    text = (
+        f"✅ <b>Force Subscribe Channel 1 Added!</b>\n\n"
+        f"Chat ID: <code>{chat.id}</code>\n"
+        f"Chat Name: {chat.title}\n"
+        f"Invite Link: {link}"
+    )
+    await m.reply(text, disable_web_page_preview=True)
+
+
+@Client.on_message(filters.command("setchat2") & filters.user(ADMINS))
+async def set_chat2(bot, m):
     if len(m.command) == 1:
-        return await m.reply("Send Command With Force Sub Channel Id Like /set_sub -100123456789")
+        return await m.reply("Usage: `/setchat2 channel_id`", quote=True)
+
     raw_id = m.text.split(" ", 1)[1]
     if temp.REQ_CHANNEL2:
-        old_channel_id = temp.REQ_CHANNEL2
-        temp.REQ_CHANNEL2 = None
-        bot.req_link2 = None
         await db.update_loadout('channel2', None, bot.me.id)
         await db.delete_all_two()
+        temp.REQ_CHANNEL2 = None
+        bot.req_link2 = None
+
     try:
         chat = await bot.get_chat(int(raw_id))
     except ChatAdminRequired:
-        return await m.reply("Channel Parameter Invalid. Iam Not Having Full Admin Rights In Your Channel. Please Add Admin With Full Admin Permeation")
+        return await m.reply("❌ Bot is not an admin in this channel.")
     except PeerIdInvalid:
-        return await m.reply("Bot Is Not Added In This Channel. Please Add With Full Admin Permeation")
+        return await m.reply("❌ Invalid channel ID or bot not added.")
     except Exception as e:
-        return await m.reply(f'Error {e}')
+        return await m.reply(f"❌ Error: {e}")
+
     try:
-        link = (await bot.create_chat_invite_link(chat_id=int(chat.id), creates_join_request=True)).invite_link
+        link = (await bot.create_chat_invite_link(chat.id, creates_join_request=True)).invite_link
     except Exception as e:
         print(e)
         link = "None"
+
     await db.update_loadout('channel2', chat.id, bot.me.id)
-    await db.delete_all_two()
     temp.REQ_CHANNEL2 = chat.id
     bot.req_link2 = link
-    text = f"Success Fully Added:\n\nchat id: {chat.id}\nchat name: {chat.title}\nchat link: {link}"
-    return await m.reply(text=text, disable_web_page_preview=True)
 
-@Client.on_message(filters.command("view_sub") & filters.user(ADMINS))
-async def get_fsub_chats(bot, m):
-    try:
-        text = ""
-        if temp.REQ_CHANNEL1:
-            try:
-                chat1 = await bot.get_chat(int(temp.REQ_CHANNEL1))
-                title = chat1.title
-            except Exception as e:
-                title = "None"
-            link1 = bot.req_link1 if hasattr(bot, 'req_link1') else "No invite link available"
-            count1 = await db.get_all_one_count()
-            
-            text += (
-                f"REQ CHANNEL 1:\n\n"
-                f"Chat ID: {temp.REQ_CHANNEL1}\n"
-                f"Chat Name: {title}\n"
-                f"Chat Link: {link1}\n"
-                f"Total Requests: {count1}\n\n"
-            )
-        else:
-            text += "No channel found for REQ CHANNEL 1.\n\n"
-        if temp.REQ_CHANNEL2:
-            try:
-                chat2 = await bot.get_chat(int(temp.REQ_CHANNEL2))
-                title = chat2.title
-            except Exception as e:
-                title = "None"
-            link2 = bot.req_link2 if hasattr(bot, 'req_link2') else "No invite link available"
-            count2 = await db.get_all_two_count()     
-            text += (
-                f"REQ CHANNEL 2:\n\n"
-                f"Chat ID: {temp.REQ_CHANNEL2}\n"
-                f"Chat Name: {title}\n"
-                f"Chat Link: {link2}\n"
-                f"Total Requests: {count2}"
-            )
-        else:
-            text += "No channel found for REQ CHANNEL 2."
-        await m.reply_text(text, disable_web_page_preview=True, quote=True)
-    
-    except Exception as e:
-        await m.reply_text(f"An error occurred: {str(e)}", quote=True)
+    text = (
+        f"✅ <b>Force Subscribe Channel 2 Added!</b>\n\n"
+        f"Chat ID: <code>{chat.id}</code>\n"
+        f"Chat Name: {chat.title}\n"
+        f"Invite Link: {link}"
+    )
+    await m.reply(text, disable_web_page_preview=True)
 
-@Client.on_message(filters.command("del_sub1") & filters.user(ADMINS))
-async def del_fsub_chats1(bot, m):
+
+# ────────────────────────────────
+# 🔹 View Force Subscribe Channels
+# ────────────────────────────────
+@Client.on_message(filters.command("viewchat1") & filters.user(ADMINS))
+async def view_chat1(bot, m):
     if not temp.REQ_CHANNEL1:
-        return await m.reply("No channel is currently set.")
-    old_channel_id = temp.REQ_CHANNEL1
+        return await m.reply("❌ No channel set for Force Sub 1.")
+    try:
+        chat = await bot.get_chat(int(temp.REQ_CHANNEL1))
+        link = bot.req_link1 if hasattr(bot, 'req_link1') else "No link available"
+        count = await db.get_all_one_count()
+        await m.reply(
+            f"📢 <b>Force Subscribe Channel 1</b>\n\n"
+            f"Name: {chat.title}\n"
+            f"Chat ID: <code>{chat.id}</code>\n"
+            f"Invite Link: {link}\n"
+            f"Total Requests: {count}"
+        )
+    except Exception as e:
+        await m.reply(f"Error: {e}")
+
+
+@Client.on_message(filters.command("viewchat2") & filters.user(ADMINS))
+async def view_chat2(bot, m):
+    if not temp.REQ_CHANNEL2:
+        return await m.reply("❌ No channel set for Force Sub 2.")
+    try:
+        chat = await bot.get_chat(int(temp.REQ_CHANNEL2))
+        link = bot.req_link2 if hasattr(bot, 'req_link2') else "No link available"
+        count = await db.get_all_two_count()
+        await m.reply(
+            f"📢 <b>Force Subscribe Channel 2</b>\n\n"
+            f"Name: {chat.title}\n"
+            f"Chat ID: <code>{chat.id}</code>\n"
+            f"Invite Link: {link}\n"
+            f"Total Requests: {count}"
+        )
+    except Exception as e:
+        await m.reply(f"Error: {e}")
+
+
+# ────────────────────────────────
+# 🔹 Delete Force Subscribe Channels
+# ────────────────────────────────
+@Client.on_message(filters.command("delchat1") & filters.user(ADMINS))
+async def del_chat1(bot, m):
+    if not temp.REQ_CHANNEL1:
+        return await m.reply("❌ No Force Sub Channel 1 set.")
+    old_id = temp.REQ_CHANNEL1
     temp.REQ_CHANNEL1 = None
     bot.req_link1 = None
     await db.update_loadout('channel1', None, bot.me.id)
     await db.delete_all_one()
-    text = f"Successfully removed the fsub channel:\n\nChat ID: {old_channel_id}"
-    return await m.reply(text=text, disable_web_page_preview=True)
-    
-@Client.on_message(filters.command("del_sub2") & filters.user(ADMINS))
-async def del_fsub_chats2(bot, m):
+    await m.reply(f"✅ Force Sub Channel 1 Deleted.\nOld Chat ID: <code>{old_id}</code>")
+
+
+@Client.on_message(filters.command("delchat2") & filters.user(ADMINS))
+async def del_chat2(bot, m):
     if not temp.REQ_CHANNEL2:
-        return await m.reply("No channel is currently set.")
-    old_channel_id = temp.REQ_CHANNEL2
+        return await m.reply("❌ No Force Sub Channel 2 set.")
+    old_id = temp.REQ_CHANNEL2
     temp.REQ_CHANNEL2 = None
     bot.req_link2 = None
     await db.update_loadout('channel2', None, bot.me.id)
     await db.delete_all_two()
-    text = f"Successfully removed the fsub channel:\n\nChat ID: {old_channel_id}"
-    return await m.reply(text=text, disable_web_page_preview=True)
-    
+    await m.reply(f"✅ Force Sub Channel 2 Deleted.\nOld Chat ID: <code>{old_id}</code>")
+
+
+# ────────────────────────────────
+# 🔹 Purge DB Requests
+# ────────────────────────────────
+@Client.on_message(filters.command("purge_one") & filters.user(ADMINS))
+async def purge_one(bot, m):
+    await db.delete_all_one()
+    await m.reply("🧹 All Force Subscribe requests from Channel 1 cleared!")
+
+
+@Client.on_message(filters.command("purge_two") & filters.user(ADMINS))
+async def purge_two(bot, m):
+    await db.delete_all_two()
+    await m.reply("🧹 All Force Subscribe requests from Channel 2 cleared!")
+
+
+# ────────────────────────────────
+# 🔹 Total Requests
+# ────────────────────────────────
+@Client.on_message(filters.command("totalreq") & filters.user(ADMINS))
+async def total_requests(bot, m):
+    try:
+        count1 = await db.get_all_one_count()
+        count2 = await db.get_all_two_count()
+        total = count1 + count2
+        await m.reply(
+            f"📊 <b>Total Force Subscribe Stats</b>\n\n"
+            f"Channel 1 Requests: {count1}\n"
+            f"Channel 2 Requests: {count2}\n"
+            f"Total Combined: {total}"
+        )
+    except Exception as e:
+        await m.reply(f"Error: {e}")
