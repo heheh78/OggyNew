@@ -60,13 +60,13 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('🔗 OUR CHANELS LINKS 🔗', url=f'https://t.me/iam_fraz_bot')
+            InlineKeyboardButton('🔸🔸🔸🔸🔸', url=f'https://t.me/i')
             ],[
-            InlineKeyboardButton('📌 MY GROUP', url=f'https://t.me/iam_fraz_bot'),
-            InlineKeyboardButton('🛠 MY OWNER', url='https://t.me/iam_fraz_bot')
+            InlineKeyboardButton('🔖', url=f'https://t.me/i'),
+            InlineKeyboardButton('🔖', url='https://t.me/i')
             ],[      
-            InlineKeyboardButton('🪬ʜᴇʟᴘ🪬', callback_data='help'),
-            InlineKeyboardButton('✨ ᴀʙᴏᴜᴛ',  callback_data='about')
+            InlineKeyboardButton('🔖', callback_data='help'),
+            InlineKeyboardButton('🔖',  callback_data='about')
             ],[
             InlineKeyboardButton('➕ ADD ME TO YOUR GROUP ➕', url='https://t.me/movie_search01bot?startgroup=true')
         ]]
@@ -158,7 +158,7 @@ async def start(client, message):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
-            photo="https.jpg",
+            photo="https://files.catbox.moe/n2r75x.jpg",
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
