@@ -2,11 +2,11 @@ from pyrogram import Client, filters
 from info import OWNER_ID
 
 # Add your source channels here
-SOURCE_CHANNELS = [-1001234567890]   # edit this
-DEST_CHANNEL = -1009876543210        # edit this
+SOURCE_CHANNELS = [-1002397004421]   # edit this
+DEST_CHANNEL = -1002287749434        # edit this
 
 # Custom caption format
-CUSTOM_CAPTION = "🔥 New Update Uploaded!\n\n{old_caption}"
+CUSTOM_CAPTION = "@CGM_Files!\n\n{old_caption}"
 
 @Client.on_message(filters.chat(SOURCE_CHANNELS) & (filters.video | filters.document | filters.photo | filters.audio))
 async def auto_forward_handler(bot, message):
